@@ -38,13 +38,23 @@ const consultarApi = async() => {
         <p>${element.artist} | ${element.year}</p>
         </div>
         <div class="card-action">
-        <a href="#">Ver Canciones</a>
+        <a href="#modal1" class="waves-effect waves-light btn modal-trigger amber darken-2" >Ver Canciones</a>
         </div>
         </div>
         </div>
         `
     });
   }
+
+ 
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+    $('.dropdown-trigger').dropdown();       
+    $('.modal').modal();
+  });
 
 
 

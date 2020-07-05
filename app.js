@@ -5,18 +5,18 @@ const consultarApi = async() => {
   }
 
    const padre=document.getElementById("padre")
-   console.log(padre)
+   
+   const canciones=document.getElementById("canciones")
 
-  consultarApi();
+
   cargarEventListener()
 
 
   //Event listener
 
  function cargarEventListener(){
-
     document.addEventListener('DOMContentLoaded',cargarAlbumes);
-
+    
   }
 
 
@@ -27,36 +27,94 @@ const consultarApi = async() => {
     // y le asigna al elemento padre la estructura que contiene los datos de cada objeto del arreglo
 
     largo.forEach(element => {
+        console.log(element.songs) 
         padre.innerHTML+=`
-        <div class="col s12 m4">
-        <div class="card">
-        <div class="card-image">
-            <img src="${element.coverArt}">
+        <div class="col s12 m4 album" >
+            <div class="card">
+                <div class="card-image">
+                    <img class="cover" src="${element.coverArt}">
+                </div>
+                <div class="card-content">
+                    <h5 class="titulo">${element.title}</h5>
+                    <p class="artista">${element.artist} | ${element.year}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#modal${element.id}" class="waves-effect waves-light btn modal-trigger amber darken-2 boton-canciones">Ver Canciones</a>
+                </div>
+            </div>
         </div>
-        <div class="card-content">
-        <h5>${element.title}</h5>
-        <p>${element.artist} | ${element.year}</p>
-        </div>
-        <div class="card-action">
-        <a href="#modal1" class="waves-effect waves-light btn modal-trigger amber darken-2" >Ver Canciones</a>
-        </div>
-        </div>
+        `;
+        canciones.innerHTML+=
+        `
+        <div id="modal${element.id}" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>Canciones</h4>
+                <ul class="collection" id="List${element.id}">
+
+                </ul>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+            </div>
         </div>
         `
+        // es importtante inicializar cada uno de estos modal para que funcione en materialize 
+        $('.modal').modal();
+
+        const album = document.getElementById(`List${element.id}`)
+        for (const song of element.songs) {
+            var millisecond=song.durationMilliseconds
+            var minutes=Math.trunc((millisecond/1000) / 60);
+            var seconds=Math.trunc((millisecond/1000) % 60);
+            if(seconds<10){
+                seconds=`0${seconds}`
+            }
+            album.innerHTML+=
+            `
+            <li class="collection-item avatar">
+                <img src="${song.coverArt}" alt="" class="circle">
+                <span class="title">${song.title}</span>
+                <p>Track: ${song.trackNumber}<br> 
+                    ${minutes}:${seconds}
+                </p>
+                <a href="#!" class="secondary-content">
+                    <i class="material-icons">grade</i>
+                </a>
+            </li>
+        `
+        }
+
     });
+    // const botonCanciones=document.getElementsByClassName("boton-canciones")[element]
+    // botonCanciones.addEventListener('click',cargarCanciones);
   }
 
+
+//   async function cargarCanciones(){
+//       const largo= await consultarApi();
+//       largo.forEach(element=>{
+//             element.songs.forEach(elementTwo=>{
+//               console.log(elementTwo.trackNumber);
+//                 canciones.innerHTML+=
+//                 `
+//                 <li class="collection-item avatar">
+//                     <img src="${elementTwo.coverArt}" alt="" class="circle">
+//                     <span class="title">${elementTwo.title}</span>
+//                     <p>${elementTwo.artist}
+//                         <br> ${elementTwo.durationMilisecond}
+//                     </p>
+//                     <a href="#!" class="secondary-content">
+//                         <i class="material-icons">grade</i>
+//                     </a>
+//                 </li>
+//                 `
+//             })
+        
+//       })
+//   }
+
+
  
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
-    $('.dropdown-trigger').dropdown();       
-    $('.modal').modal();
-  });
-
-
 
     
     

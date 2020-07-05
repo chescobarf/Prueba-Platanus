@@ -54,7 +54,7 @@ const consultarApi = async() => {
                 </ul>
             </div>
             <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat red darken-2 white-text">Cerrar</a>
             </div>
         </div>
         `
@@ -78,7 +78,7 @@ const consultarApi = async() => {
                     ${minutes}:${seconds}
                 </p>
                 <a href="#!" class="secondary-content">
-                    <i class="material-icons">grade</i>
+                    <i class="material-icons grey-text text-darken-2">grade</i>
                 </a>
             </li>
         `

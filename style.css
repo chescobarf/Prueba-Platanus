@@ -1,0 +1,13 @@
+#fav{
+    display: inherit !important;
+}
+.hidden{
+    visibility: hidden;
+}
+.background{
+    background: rgb(139,104,4);
+    background: -moz-linear-gradient(125deg, rgba(139,104,4,1) 0%, rgba(212,149,13,1) 35%, rgba(255,160,0,1) 100%);
+    background: -webkit-linear-gradient(125deg, rgba(139,104,4,1) 0%, rgba(212,149,13,1) 35%, rgba(255,160,0,1) 100%);
+    background: linear-gradient(125deg, rgba(139,104,4,1) 0%, rgba(212,149,13,1) 35%, rgba(255,160,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8b6804",endColorstr="#ffa000",GradientType=1); 
+}
